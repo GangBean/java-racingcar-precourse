@@ -60,8 +60,10 @@ public class JudgeTest {
         for (String name:inputList) {
             cars.add(new Car(name));
         }
-        Judge judge = new Judge(cars, input);
-        judge.playWholeRace();
+        Judge judge = new Judge(cars);
+        while (input-->0) {
+            judge.playRace();
+        }
         System.out.println(judge.getRaceWinner());
         assertThat(judge.getRaceWinner().split(",")).containsAnyOf(inputList);
     }

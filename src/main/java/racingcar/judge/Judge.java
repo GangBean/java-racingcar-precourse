@@ -3,22 +3,14 @@ package racingcar.judge;
 import racingcar.car.Car;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Judge {
     private List<Car> attendCarList;
-    private Integer wholeRoundNumber;
     private Integer winnerPosition;
 
     public Judge(List<Car> attendCarList) {
         this.attendCarList = attendCarList;
-    }
-
-    public Judge(List<Car> cars, int roundNumber) {
-        this.attendCarList = cars;
-        this.wholeRoundNumber = roundNumber;
     }
 
     public List<Car> getAttendCarList() {
@@ -35,21 +27,13 @@ public class Judge {
         }
         return true;
     }
-    public boolean playWholeRace() {
-        int round = 0;
-        boolean endOk = true;
-        while (round<this.wholeRoundNumber) {
-            endOk = (endOk && playRace());
-            round++;
-        }
-        return endOk;
-    }
 
     public String getRaceResult() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Car car:this.attendCarList) {
             stringBuilder.append(getCarRaceResult(car)).append("\n");
         }
+        stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 
