@@ -9,18 +9,19 @@ public class Judge {
 
     public Judge(AttendGroup attendCarList) {
         this.attendGroup = attendCarList;
+        this.winnerPosition = 0;
     }
 
     public AttendGroup getAttendGroup() {
         return this.attendGroup;
     }
 
-    public boolean playRace() {
+    public Boolean playRace() {
         for (Car car : this.attendGroup.getAttendCarList()) {
             car.setMoveCount();
             car.moveCar();
         }
-        return true;
+        return Boolean.TRUE;
     }
 
     public String getRaceResult() {
@@ -54,17 +55,17 @@ public class Judge {
 
     public String judgeWinner(Car car) {
         StringBuilder stringBuilder = new StringBuilder();
-        if (car.getCarPosition() == this.winnerPosition) {
+        if (car.getCarPosition().equals(this.winnerPosition)) {
             stringBuilder.append(car.getName()).append(",");
         }
         return stringBuilder.toString();
     }
 
     public void getWinnerPosition() {
-        int winnerPosition = 0;
+        int position = 0;
         for (Car car : this.attendGroup.getAttendCarList()) {
-            winnerPosition = Math.max(car.getCarPosition(), winnerPosition);
+            position = Math.max(car.getCarPosition(), position);
         }
-        this.winnerPosition = winnerPosition;
+        this.winnerPosition = position;
     }
 }
