@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.attendgroup.AttendGroup;
 import racingcar.car.Car;
 import racingcar.judge.Judge;
 
@@ -11,8 +12,8 @@ public class GameController {
     public static final String ILLEGAL_ARGUMENT_EXCEPTION = "ILLEGAL_ARGUMENT";
     public static final String ILLEGAL_STATE_EXCEPTION = "ILLEGAL_STATE";
     private UserInterfaceController userInterfaceController;
-    private List<Car> attendCarList;
-    private int gameRoundNumber;
+    private AttendGroup attendCarList;
+    private Integer gameRoundNumber;
     private Judge judge;
 
     public void playGame() {
@@ -45,13 +46,10 @@ public class GameController {
     private void registerParticipant(String participant) {
         List<Car> cars = new ArrayList<>();
         String[] participants = participant.split(",");
-        if (participants.length == 0) {
-            throw new IllegalStateException();
-        }
         for (String name:participants) {
             cars.add(new Car(name));
         }
-        this.attendCarList = cars;
+        this.attendCarList = new AttendGroup(cars);
         this.judge = new Judge(attendCarList);
     }
 

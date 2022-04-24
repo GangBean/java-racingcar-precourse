@@ -1,10 +1,9 @@
 package racingcar.judge;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.internal.matchers.Null;
+import racingcar.attendgroup.AttendGroup;
 import racingcar.car.Car;
 
 import java.util.ArrayList;
@@ -22,8 +21,8 @@ public class JudgeTest {
         for (String name:inputList) {
            cars.add(new Car(name));
         }
-        Judge judge = new Judge(cars);
-        assertThat(judge.getAttendCarList().size()).isNotEqualTo(0);
+        Judge judge = new Judge(new AttendGroup(cars));
+        assertThat(judge.getAttendGroup().getAttendCarList().size()).isNotEqualTo(0);
     }
 
     @ParameterizedTest
@@ -32,7 +31,7 @@ public class JudgeTest {
     void 심판_1회_경주_시작(String input) {
         List<Car> cars = new ArrayList<>();
         cars.add(new Car(input));
-        Judge judge = new Judge(cars);
+        Judge judge = new Judge(new AttendGroup(cars));
         assertThat(judge.playRace()).isEqualTo(true);
     }
 
@@ -45,7 +44,7 @@ public class JudgeTest {
         for (String name:inputList) {
             cars.add(new Car(name));
         }
-        Judge judge = new Judge(cars);
+        Judge judge = new Judge(new AttendGroup(cars));
         judge.playRace();
         System.out.println(judge.getRaceResult());
         assertThat(judge.getRaceResult().split("\n").length).isEqualTo(inputList.length);
@@ -60,7 +59,7 @@ public class JudgeTest {
         for (String name:inputList) {
             cars.add(new Car(name));
         }
-        Judge judge = new Judge(cars);
+        Judge judge = new Judge(new AttendGroup(cars));
         while (input-->0) {
             judge.playRace();
         }
