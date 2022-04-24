@@ -46,7 +46,7 @@ public class GameController {
     private void registerParticipant(String participant) {
         List<Car> cars = new ArrayList<>();
         String[] participants = participant.split(",");
-        for (String name:participants) {
+        for (String name : participants) {
             cars.add(new Car(name));
         }
         this.attendCarList = new AttendGroup(cars);
@@ -59,7 +59,7 @@ public class GameController {
 
     private void requestPlayRacing() {
         this.userInterfaceController.printAnnounceRoundResult();
-        for (int i=0; i<this.gameRoundNumber; i++) {
+        for (int i = 0; i < this.gameRoundNumber; i++) {
             requestOneRoundRacing();
         }
     }

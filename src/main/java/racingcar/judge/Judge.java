@@ -16,7 +16,7 @@ public class Judge {
     }
 
     public boolean playRace() {
-        for (Car car:this.attendGroup.getAttendCarList()) {
+        for (Car car : this.attendGroup.getAttendCarList()) {
             car.setMoveCount();
             car.moveCar();
         }
@@ -25,7 +25,7 @@ public class Judge {
 
     public String getRaceResult() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Car car:this.attendGroup.getAttendCarList()) {
+        for (Car car : this.attendGroup.getAttendCarList()) {
             stringBuilder.append(getCarRaceResult(car)).append("\n");
         }
         stringBuilder.append("\n");
@@ -36,7 +36,7 @@ public class Judge {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(car.getName()).append(" : ");
         int carPosition = car.getCarPosition();
-        for (int i=0; i<carPosition; i++) {
+        for (int i = 0; i < carPosition; i++) {
             stringBuilder.append("-");
         }
         return stringBuilder.toString();
@@ -45,11 +45,11 @@ public class Judge {
     public String getRaceWinner() {
         this.getWinnerPosition();
         StringBuilder stringBuilder = new StringBuilder();
-        for (Car car:this.attendGroup.getAttendCarList()) {
+        for (Car car : this.attendGroup.getAttendCarList()) {
             stringBuilder.append(judgeWinner(car));
         }
         String winner = stringBuilder.toString();
-        return winner.substring(0, winner.length()-1);
+        return winner.substring(0, winner.length() - 1);
     }
 
     public String judgeWinner(Car car) {
@@ -62,7 +62,7 @@ public class Judge {
 
     public void getWinnerPosition() {
         int winnerPosition = 0;
-        for (Car car:this.attendGroup.getAttendCarList()) {
+        for (Car car : this.attendGroup.getAttendCarList()) {
             winnerPosition = Math.max(car.getCarPosition(), winnerPosition);
         }
         this.winnerPosition = winnerPosition;

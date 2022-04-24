@@ -44,7 +44,7 @@ public class UserInterfaceController {
     }
 
     public void printRaceWinner(String winner) {
-        System.out.print("최종 우승자: "+winner);
+        System.out.print("최종 우승자: " + winner);
     }
 
     public void printParticipantInputError(String validate) {

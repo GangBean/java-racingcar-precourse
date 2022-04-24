@@ -13,11 +13,11 @@ import static org.assertj.core.api.Assertions.*;
 public class AttendGroupTest {
     @ParameterizedTest
     @DisplayName("참가 그룹 생성 테스트")
-    @ValueSource(strings = {"a,b,c","a","b,c","aa,aa"})
+    @ValueSource(strings = {"a,b,c", "a", "b,c", "aa,aa"})
     void 참가_그룹_생성_정상_테스트(String input) {
         String[] attendCars = input.split(",");
         List<Car> cars = new ArrayList<>();
-        for (String car:attendCars) {
+        for (String car : attendCars) {
             cars.add(new Car(car));
         }
         AttendGroup attendGroup = new AttendGroup(cars);
@@ -26,12 +26,12 @@ public class AttendGroupTest {
 
     @ParameterizedTest
     @DisplayName("참가 그룹 생성 비정상 테스트")
-    @ValueSource(strings = {",",",,",""})
+    @ValueSource(strings = {",", ",,", ""})
     void 참가_그룹_생성_비정상_테스트(String input) {
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             String[] attendCars = input.split(",");
             List<Car> cars = new ArrayList<>();
-            for (String car:attendCars) {
+            for (String car : attendCars) {
                 cars.add(new Car(car));
             }
             AttendGroup attendGroup = new AttendGroup(cars);

@@ -32,7 +32,7 @@ public class Car {
     }
 
     public boolean getMoveOrStop() {
-        this.moveOrStop = (this.moveCount>= MOVE_STANDARD_COUNT);
+        this.moveOrStop = (this.moveCount >= MOVE_STANDARD_COUNT);
         return this.moveOrStop;
     }
 
@@ -41,7 +41,7 @@ public class Car {
     }
 
     public void moveCar() {
-        if (this.getMoveOrStop()==MOVE) {
+        if (this.getMoveOrStop() == MOVE) {
             this.carPosition++;
         }
         this.moveCount = 0;
