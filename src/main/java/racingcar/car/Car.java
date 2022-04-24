@@ -14,7 +14,7 @@ public class Car {
 
     public Car(String name) {
         if (name.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차 이름은 5글자 이하만 가능합니다.");
         }
         this.name = name;
     }
