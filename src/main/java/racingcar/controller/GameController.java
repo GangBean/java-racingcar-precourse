@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
+    public static final String NORMAL_CONDITION = "OK";
+    public static final String ILLEGAL_ARGUMENT_EXCEPTION = "ILLEGAL_ARGUMENT";
+    public static final String ILLEGAL_STATE_EXCEPTION = "ILLEGAL_STATE";
     private UserInterfaceController userInterfaceController;
     private List<Car> attendCarList;
     private int gameRoundNumber;
@@ -21,9 +24,30 @@ public class GameController {
     }
 
     private void requestParticipantInput() {
+        String validate = validateParticipantInput();
+        while (!NORMAL_CONDITION.equals(validate)) {
+            this.userInterfaceController.printParticipantInputError(validate);
+            validate = validateParticipantInput();
+        }
+    }
+
+    private String validateParticipantInput() {
+        try {
+            registerParticipant(this.userInterfaceController.requireCarNameInput());
+            return NORMAL_CONDITION;
+        } catch (IllegalArgumentException e) {
+            return ILLEGAL_ARGUMENT_EXCEPTION;
+        } catch (IllegalStateException e) {
+            return ILLEGAL_STATE_EXCEPTION;
+        }
+    }
+
+    private void registerParticipant(String participant) {
         List<Car> cars = new ArrayList<>();
-        String participant = this.userInterfaceController.requireCarNameInput();
         String[] participants = participant.split(",");
+        if (participants.length == 0) {
+            throw new IllegalStateException();
+        }
         for (String name:participants) {
             cars.add(new Car(name));
         }
