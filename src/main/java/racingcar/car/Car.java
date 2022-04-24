@@ -13,8 +13,8 @@ public class Car {
     private int carPosition;
 
     public Car(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름은 5글자 이하만 가능합니다.");
+        if (name.length() > 5 || name.length() == 0) {
+            throw new IllegalArgumentException("자동차 이름은 1글자 이상, 5글자 이하만 가능합니다.");
         }
         this.name = name;
     }

@@ -18,9 +18,6 @@ public class Judge {
     }
 
     public boolean playRace() {
-        if (this.attendCarList.size()==0) {
-            return false;
-        }
         for (Car car:this.attendCarList) {
             car.setMoveCount();
             car.moveCar();
@@ -49,22 +46,20 @@ public class Judge {
 
     public String getRaceWinner() {
         this.getWinnerPosition();
-        List<String> raceResult = new ArrayList<>();
-        for (Car car:this.attendCarList) {
-            if (this.judgeWinner(car)) {
-                raceResult.add(car.getName());
-            }
-        }
         StringBuilder stringBuilder = new StringBuilder();
-        for (String winner:raceResult) {
-            stringBuilder.append(winner).append(",");
+        for (Car car:this.attendCarList) {
+            stringBuilder.append(judgeWinner(car));
         }
         String winner = stringBuilder.toString();
         return winner.substring(0, winner.length()-1);
     }
 
-    public boolean judgeWinner(Car car) {
-        return car.getCarPosition() == this.winnerPosition;
+    public String judgeWinner(Car car) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (car.getCarPosition() == this.winnerPosition) {
+            stringBuilder.append(car.getName()).append(",");
+        }
+        return stringBuilder.toString();
     }
 
     public void getWinnerPosition() {
