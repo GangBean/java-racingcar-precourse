@@ -41,8 +41,8 @@ public class Car {
     }
 
     public void moveCar() {
-        if (this.moveOrStop==MOVE) {
-            this.carPosition += this.moveCount;
+        if (this.getMoveOrStop()==MOVE) {
+            this.carPosition++;
         }
         this.moveCount = 0;
     }
