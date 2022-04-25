@@ -12,7 +12,6 @@ public class GameController {
     public static final String ILLEGAL_ARGUMENT_EXCEPTION = "ILLEGAL_ARGUMENT";
     public static final String ILLEGAL_STATE_EXCEPTION = "ILLEGAL_STATE";
     private UserInterfaceController userInterfaceController;
-    private AttendGroup attendCarList;
     private Integer gameRoundNumber;
     private Judge judge;
 
@@ -49,8 +48,7 @@ public class GameController {
         for (String name : participants) {
             cars.add(new Car(name));
         }
-        this.attendCarList = new AttendGroup(cars);
-        this.judge = new Judge(attendCarList);
+        this.judge = new Judge(new AttendGroup(cars));
     }
 
     private void requestRacingRoundNumberInput() {

@@ -7,8 +7,8 @@ public class Judge {
     private AttendGroup attendGroup;
     private Integer winnerPosition;
 
-    public Judge(AttendGroup attendCarList) {
-        this.attendGroup = attendCarList;
+    public Judge(AttendGroup attendGroup) {
+        this.attendGroup = attendGroup;
         this.winnerPosition = 0;
     }
 
